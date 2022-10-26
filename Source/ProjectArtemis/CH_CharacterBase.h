@@ -21,6 +21,15 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	void MoveForward(float AxisValue);
+	void MoveRight(float AxisValue);
+
+	void LookUpMouse(float AxisValue);
+	void LookRightMouse(float AxisValue);
+
+	void UseAbility1();
+	void UseAbility2();
+	void UseAbility3();
 
 	UPROPERTY()
 	UArrowComponent* View;
@@ -28,7 +37,7 @@ protected:
 	UPROPERTY()
 	UCameraComponent* FPSCamera;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	UAC_AbilityHolder* AbilityHolder;
 	
 public:	

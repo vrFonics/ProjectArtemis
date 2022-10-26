@@ -3,6 +3,10 @@
 
 #include "AC_AbilityHolder.h"
 
+#include <wrl/module.h>
+
+#include "HandlerComponentFactory.h"
+
 // Sets default values for this component's properties
 UAC_AbilityHolder::UAC_AbilityHolder()
 {
@@ -11,6 +15,9 @@ UAC_AbilityHolder::UAC_AbilityHolder()
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
+
+	
+	Ability1 = CreateDefaultSubobject<;
 }
 
 
@@ -30,5 +37,12 @@ void UAC_AbilityHolder::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+}
+
+void UAC_AbilityHolder::UpdateCharacterAbilities(CharacterStruct NewCharacterStruct)
+{
+	Ability1 = NewCharacterStruct.Ability1;
+	Ability2 = NewCharacterStruct.Ability2;
+	Ability3 = NewCharacterStruct.Ability3;
 }
 

@@ -5,7 +5,18 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "AC_AbilityBase.h"
+#include "Kismet/GameplayStatics.h"
 #include "AC_AbilityHolder.generated.h"
+
+struct CharacterStruct
+{
+	std::string CharacterName;
+	
+	UAC_AbilityBase* Ability1;
+	UAC_AbilityBase* Ability2;
+	UAC_AbilityBase* Ability3;
+};
+
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -25,10 +36,21 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	void UpdateCharacterAbilities(CharacterStruct NewCharacterStruct);
+
+	CharacterStruct CurrentCharacter;
+	
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<UAC_AbilityBase> Ability1;
+		TSubclassOf<UAC_AbilityBase> Ability1Class;
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<UAC_AbilityBase> Ability2;
+		TSubclassOf<UAC_AbilityBase> Ability2Class;
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<UAC_AbilityBase> Ability3;
+		TSubclassOf<UAC_AbilityBase> Ability3Class;
+
+	UPROPERTY()
+	UAC_AbilityBase* Ability1;
+	UPROPERTY()
+	UAC_AbilityBase* Ability2;
+	UPROPERTY()
+	UAC_AbilityBase* Ability3;
 };
