@@ -10,14 +10,10 @@
 
 struct CharacterStruct
 {
-	std::string CharacterName;
-	
 	UAC_AbilityBase* Ability1;
 	UAC_AbilityBase* Ability2;
 	UAC_AbilityBase* Ability3;
 };
-
-
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class PROJECTARTEMIS_API UAC_AbilityHolder : public UActorComponent

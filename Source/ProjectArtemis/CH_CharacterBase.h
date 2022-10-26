@@ -6,7 +6,6 @@
 #include "AC_AbilityHolder.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/Character.h"
-#include "Engine/SkeletalMesh.h"
 #include "CH_CharacterBase.generated.h"
 
 UCLASS()

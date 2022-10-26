@@ -3,10 +3,6 @@
 
 #include "AC_AbilityHolder.h"
 
-#include <wrl/module.h>
-
-#include "HandlerComponentFactory.h"
-
 // Sets default values for this component's properties
 UAC_AbilityHolder::UAC_AbilityHolder()
 {
@@ -17,7 +13,7 @@ UAC_AbilityHolder::UAC_AbilityHolder()
 	// ...
 
 	
-	Ability1 = CreateDefaultSubobject<;
+	//Ability1 = CreateDefaultSubobject<;
 }
 
 
