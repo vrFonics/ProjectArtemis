@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AC_AbilityHolder.h"
+#include "Camera/CameraComponent.h"
 #include "GameFramework/Character.h"
 #include "Engine/SkeletalMesh.h"
 #include "CH_CharacterBase.generated.h"
@@ -20,6 +22,15 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UPROPERTY()
+	UArrowComponent* View;
+
+	UPROPERTY()
+	UCameraComponent* FPSCamera;
+
+	UPROPERTY()
+	UAC_AbilityHolder* AbilityHolder;
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
