@@ -21,8 +21,10 @@ ACH_CharacterBase::ACH_CharacterBase()
 
 	FPSCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FPSCamera"));
 	FPSCamera->AttachToComponent(View, FAttachmentTransformRules::KeepRelativeTransform);
-
+ 
 	AbilityHolder = CreateDefaultSubobject<UAC_AbilityHolder>(TEXT("AbilityHolder"));
+
+	XRotation = 0;
 }
 
 // Called when the game starts or when spawned
@@ -43,27 +45,34 @@ void ACH_CharacterBase::MoveRight(float AxisValue)
 
 void ACH_CharacterBase::LookUpMouse(float AxisValue)
 {
-	View->AddLocalRotation(FRotator(-AxisValue, 0, 0));
+	XRotation -= AxisValue;
+	XRotation = FMath::Clamp(XRotation, -90, 90);
+	View->SetRelativeRotation(FRotator(XRotation, 0, 0));
 }
 
 void ACH_CharacterBase::LookRightMouse(float AxisValue)
 {
-	AddControllerYawInput(AxisValue);
+	GetController()->SetControlRotation(FRotator(0, GetController()->GetControlRotation().Yaw + AxisValue, 0));
 }
 
 void ACH_CharacterBase::UseAbility1()
 {
-	
+	AbilityHolder->Ability1->UseAbility();
 }
 
 void ACH_CharacterBase::UseAbility2()
 {
-	
+	AbilityHolder->Ability2->UseAbility();
 }
 
 void ACH_CharacterBase::UseAbility3()
 {
-	
+	AbilityHolder->Ability3->UseAbility();
+}
+
+void ACH_CharacterBase::DoJump()
+{
+	Jump();
 }
 
 // Called every frame
@@ -80,5 +89,6 @@ void ACH_CharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	InputComponent->BindAxis("RightMovement", this, &ACH_CharacterBase::MoveRight);
 	InputComponent->BindAxis("Look Up / Down Mouse", this, &ACH_CharacterBase::LookUpMouse);
 	InputComponent->BindAxis("Turn Right / Left Mouse", this, &ACH_CharacterBase::LookRightMouse);
+	InputComponent->BindAction("Jump", IE_Pressed, this, &ACH_CharacterBase::DoJump);
 }
 

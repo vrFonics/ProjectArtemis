@@ -30,14 +30,15 @@ protected:
 	void UseAbility2();
 	void UseAbility3();
 
+	void DoJump();
+
 	UPROPERTY()
 	UArrowComponent* View;
 
 	UPROPERTY()
 	UCameraComponent* FPSCamera;
 
-	UPROPERTY(EditAnywhere)
-	UAC_AbilityHolder* AbilityHolder;
+	float XRotation;
 	
 public:	
 	// Called every frame
@@ -50,4 +51,7 @@ public:
 	float StartingHealth;
 	float CurrentHealth;
 	float LookSensitivity;
+
+	UPROPERTY(EditAnywhere)
+	UAC_AbilityHolder* AbilityHolder;
 };

@@ -24,7 +24,7 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	bool UseAbility();
+	virtual bool UseAbility();
 
 	UPROPERTY(EditAnywhere)
 	float Cooldown;

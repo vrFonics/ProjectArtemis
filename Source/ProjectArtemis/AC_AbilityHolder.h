@@ -8,11 +8,17 @@
 #include "Kismet/GameplayStatics.h"
 #include "AC_AbilityHolder.generated.h"
 
-struct CharacterStruct
+USTRUCT(BlueprintType)
+struct FCharacterStruct
 {
-	UAC_AbilityBase* Ability1;
-	UAC_AbilityBase* Ability2;
-	UAC_AbilityBase* Ability3;
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UAC_AbilityBase> Ability1Class;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UAC_AbilityBase> Ability2Class;
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UAC_AbilityBase> Ability3Class;
 };
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -32,21 +38,16 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void UpdateCharacterAbilities(CharacterStruct NewCharacterStruct);
+	void UpdateCharacterAbilities(FCharacterStruct NewCharacterStruct);
+	void ChangeAbility(int AbilityIndex, TSubclassOf<UAC_AbilityBase> NewClass);
 
-	CharacterStruct CurrentCharacter;
-	
 	UPROPERTY(EditAnywhere)
-		TSubclassOf<UAC_AbilityBase> Ability1Class;
-	UPROPERTY(EditAnywhere)
-		TSubclassOf<UAC_AbilityBase> Ability2Class;
-	UPROPERTY(EditAnywhere)
-		TSubclassOf<UAC_AbilityBase> Ability3Class;
+	FCharacterStruct CurrentCharacter;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	UAC_AbilityBase* Ability1;
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	UAC_AbilityBase* Ability2;
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	UAC_AbilityBase* Ability3;
 };
