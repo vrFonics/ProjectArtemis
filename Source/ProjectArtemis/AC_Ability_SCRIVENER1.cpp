@@ -14,7 +14,7 @@ bool UAC_Ability_SCRIVENER1::UseAbility()
 		CurrentDecal->DestroyComponent();
 		CurrentDecal = nullptr;
 		//Character->AbilityHolder->Weapon->Equip;
-		return;
+		return false;
 	}
 	//Character->AbilityHolder->Weapon->Unequip;
 	bEquipped = true;
@@ -24,6 +24,7 @@ bool UAC_Ability_SCRIVENER1::UseAbility()
 		FVector(0,0,0),
 		FRotator(0,0,0),
 		0);
+	return true;
 }
 
 void UAC_Ability_SCRIVENER1::BeginPlay()

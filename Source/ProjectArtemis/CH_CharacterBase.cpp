@@ -24,6 +24,10 @@ ACH_CharacterBase::ACH_CharacterBase()
  
 	AbilityHolder = CreateDefaultSubobject<UAC_AbilityHolder>(TEXT("AbilityHolder"));
 
+	IntendedDirection = FVector::ZeroVector;
+	
+	TargetCosmeticCameraRotation = FRotator::ZeroRotator;
+	
 	XRotation = 0;
 }
 
@@ -75,10 +79,18 @@ void ACH_CharacterBase::DoJump()
 	Jump();
 }
 
+void ACH_CharacterBase::DoCosmeticCameraRotation(float DeltaTime)
+{
+	TargetCosmeticCameraRotation.Roll = FVector::DotProduct(View->GetRightVector(), GetLastMovementInputVector()) * CosmeticCameraRollMultiplier;
+
+	//FPSCamera->SetRelativeRotation(FQuat::Slerp(FPSCamera->GetRelativeRotation().Quaternion(), TargetCosmeticCameraRotation.Quaternion(), DeltaTime * CosmeticCameraRotationLerpSpeed));
+}
+
 // Called every frame
 void ACH_CharacterBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	DoCosmeticCameraRotation(DeltaTime);
 }
 
 // Called to bind functionality to input

@@ -32,11 +32,25 @@ protected:
 
 	void DoJump();
 
+	void DoCosmeticCameraRotation(float DeltaTime);
+
 	UPROPERTY()
 	UArrowComponent* View;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UCameraComponent* FPSCamera;
+
+	UPROPERTY()
+	FVector IntendedDirection;
+
+	UPROPERTY()
+	FRotator TargetCosmeticCameraRotation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float CosmeticCameraRollMultiplier;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float CosmeticCameraRotationLerpSpeed;
 
 	float XRotation;
 	
